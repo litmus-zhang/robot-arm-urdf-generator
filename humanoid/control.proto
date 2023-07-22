@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+message NeckRequest {
+  float angle = 1; // #between(-45, 45)
+}
+
+message NeckResponse {}
+
+message WristRequest {
+  string wrist = 1; // #left or right
+  float angle = 1;  // #between(-90, 90)
+}
+
+message WristResponse {}
+
+message ArmRequest {
+  string arm = 1;  //#left or right
+  float angle = 1; //#between(-90, 90)
+}
+
+message ArmResponse {}
+
+service NeckService {
+  rpc NeckTurn(stream NeckRequest) returns (stream NeckResponse);
+}
+
+service WristService {
+  rpc WristTurn(stream WristRequest) returns (stream WristResponse);
+}
+
+service ArmService {
+  rpc ArmTurn(stream ArmRequest) returns (stream ArmResponse);
+}
